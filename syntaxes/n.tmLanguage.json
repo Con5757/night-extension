@@ -56,7 +56,7 @@
       "patterns": [
         {
           "name": "keyword.control.night",
-          "match": "\\b(if|elif|else|during|repeat|count|arg|incase|attempt|send|end|break|continue|main)\\b"
+          "match": "\\b(if|elif|else|during|repeat|count|arg|incase|attempt|send|end|kill|break|continue|main)\\b"
         },
         {
           "name": "keyword.other.using.night",
@@ -75,12 +75,8 @@
           "match": "\\b(true|false|nil)\\b"
         },
         {
-          "name": "entity.name.namespace.night",
-          "match": "\\b(terminal)(?=\\.)"
-        },
-        {
           "name": "support.function.terminal.night",
-          "match": "(?<=terminal\\.)(out|in)\\b"
+          "match": "(?<=terminal\\.)(out|in|nl)\\b"
         },
         {
           "name": "constant.language.night",
@@ -142,7 +138,7 @@
         },
         {
           "name": "constant.numeric.night",
-          "match": "\\b[2-9]|[1-9][0-9]+(\\.[0-9]+)?\\b"
+          "match": "\\b[0-9]+(?:\\.[0-9]+)?\\b"
         }
       ]
     },

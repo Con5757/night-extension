@@ -2,8 +2,9 @@
   "Main Function": {
     "prefix": "main",
     "body": [
-      "${1|$|}func main(${2:}) {",
+      "${1|$,#,%,@|}func main(${2:}) {",
       "\t$0",
+      "\tkill",
       "}"
     ],
     "description": "Main function block"
@@ -79,7 +80,7 @@
   "During Loop": {
     "prefix": "during",
     "body": [
-      "during (${1:}) {",
+      "during ${1:} {",
       "\t$0",
       "}"
     ],
@@ -93,18 +94,25 @@
     "description": "Import library statement"
   },
   "Terminal Output": {
-    "prefix": "terminal.out",
-    "body": [
-      "terminal.out(${1:})"
-    ],
-    "description": "Terminal print output"
+    "prefix": ".out",
+    "body": [".out(${1:})"],
+    "description": "Terminal print output",
+    "scope": "support.function.terminal.night"
   },
   "Terminal Input": {
-    "prefix": "terminal.in",
+    "prefix": ".in",
     "body": [
-      "terminal.in(${1|#,%,@|})"
+      ".in(${1|#,%,@|})"
     ],
     "description": "Terminal read input",
+    "scope": "support.function.terminal.night"
+  },
+  "Terminal Newline": {
+    "prefix": ".nl",
+    "body": [
+      ".nl"
+    ],
+    "description": "Terminal New Line",
     "scope": "support.function.terminal.night"
   }
 }
