@@ -1,158 +1,110 @@
 {
   "Main Function": {
     "prefix": "main",
-    "body": ["func main()", "block", "\t$0", "end"],
-    "description": "Main entry point block"
+    "body": [
+      "${1|$|}func main(${2:}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Main function block"
   },
-  "Function Definition": {
+  "Typed Function": {
     "prefix": "func",
-    "body": ["func ${1:name}(${2:params})", "block", "\t$0", "end"],
-    "description": "Function definition"
-  },
-  "Typed Function Definition": {
-    "prefix": "tfunc",
     "body": [
-      "${1|#,%,@,$|}func ${2:name}(${3:params})",
-      "block",
+      "${1|#,%,@,$|}func ${2:name}(${3:params}) {",
       "\t$0",
-      "end"
+      "}"
     ],
-    "description": "Typed function definition"
-  },
-  "Block Statement": {
-    "prefix": "block",
-    "body": ["block", "\t$0", "end"],
-    "description": "Code block"
-  },
-  "If Statement": {
-    "prefix": "if",
-    "body": ["if (${1:condition})", "block", "\t$0", "end"],
-    "description": "If condition block"
-  },
-  "If-Elif-Else Statement": {
-    "prefix": "ifel",
-    "body": [
-      "if (${1:condition})",
-      "block",
-      "\t$2",
-      "end",
-      "elif (${3:condition})",
-      "block",
-      "\t$4",
-      "end",
-      "else",
-      "block",
-      "\t$0",
-      "end"
-    ],
-    "description": "If / Elif / Else block"
-  },
-  "During Loop (While)": {
-    "prefix": "during",
-    "body": [
-      "during (${1:left} ${2:operator} ${3:right})",
-      "block",
-      "\t$0",
-      "end"
-    ],
-    "description": "During loop (while condition)"
-  },
-  "Repeat Loop (For)": {
-    "prefix": "repeat",
-    "body": [
-      "repeat (${1:init}, ${2:condition}, ${3:step})",
-      "block",
-      "\t$0",
-      "end"
-    ],
-    "description": "Repeat loop (initialize, condition, step)"
+    "description": "Typed function with curly braces"
   },
   "Count Switch Block": {
     "prefix": "count",
     "body": [
-      "count (${1:variable})",
-      "block",
+      "count (${1:variable}) {",
       "\targ ${2:value}:",
       "\t\t$3",
-      "\t\tsend",
+      "\t\tend",
       "\tincase:",
-      "\t\t$0",
-      "end"
+      "\t\t$4",
+      "\t\tend",
+      "}"
     ],
-    "description": "Count switch block with arg cases and incase default"
+    "description": "Count block using curly braces and end markers"
   },
   "Arg Case": {
     "prefix": "arg",
-    "body": ["arg ${1:value}:", "\t$0", "\tsend"],
+    "body": [
+      "arg ${1:value}:",
+      "\t$0",
+      "\tend"
+    ],
     "description": "Arg case statement inside count block"
   },
-  "Attempt / Incase (Error Handling)": {
-    "prefix": "attempt",
+  "If Statement": {
+    "prefix": "if",
     "body": [
-      "attempt",
-      "block",
-      "\t$1",
-      "end",
-      "incase",
-      "block",
+      "if ${1:value} ${2:compare} ${3:expression} {",
       "\t$0",
-      "end"
+      "}"
     ],
-    "description": "Error handling try/catch block"
+    "description": "If statement with braces"
   },
-  "Using Module Import": {
+  "Elif Statement": {
+    "prefix": "elif",
+    "body": [
+      "elif ${1:value} ${2:compare} ${3:expression} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Elif statement with braces"
+  },
+  "Else Statement": {
+    "prefix": "else",
+    "body": [
+      "else {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Else block with braces"
+  },
+  "Repeat Loop": {
+    "prefix": "repeat",
+    "body": [
+      "repeat (${1:}, ${2:}, ${3:}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Repeat loop with braces"
+  },
+  "During Loop": {
+    "prefix": "during",
+    "body": [
+      "during (${1:}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "During loop with braces"
+  },
+  "Using Import": {
     "prefix": "using",
-    "body": ["using ${1|boolean,terminal|}"],
-    "description": "Import module with using"
+    "body": [
+      "using ${1|boolean,terminal|}"
+    ],
+    "description": "Import library statement"
   },
   "Terminal Output": {
-    "prefix": "out",
-    "body": ["terminal.out(${1:data});"],
-    "description": "Print to stdout via terminal"
+    "prefix": "terminal.out",
+    "body": [
+      "terminal.out(${1:})"
+    ],
+    "description": "Terminal print output"
   },
   "Terminal Input": {
-    "prefix": "in",
-    "body": ["terminal.in(${1:buffer});"],
-    "description": "Read from stdin via terminal"
-  },
-  "Integer Variable": {
-    "prefix": "varint",
-    "body": ["#${1:num} = ${2:0};"],
-    "description": "Declare integer variable (#)"
-  },
-  "Float Variable": {
-    "prefix": "varfloat",
-    "body": ["%${1:val} = ${2:0.0};"],
-    "description": "Declare decimal variable (%)"
-  },
-  "String Variable": {
-    "prefix": "varstr",
-    "body": ["@${1:str} = \"${2}\";"],
-    "description": "Declare string variable (@)"
-  },
-  "Nil Variable": {
-    "prefix": "varnil",
-    "body": ["$${1:var} = nil;"],
-    "description": "Declare nil variable ($)"
-  },
-  "Constant Definition": {
-    "prefix": "const",
-    "body": ["?${1:CCp} = ${2:value};"],
-    "description": "Declare constant qualifier (?)"
-  },
-  "Line Comment Header": {
-    "prefix": "header",
+    "prefix": "terminal.in",
     "body": [
-      ";- ===========================================",
-      ";- $1",
-      ";- ===========================================",
-      "$0"
+      "terminal.in(${1|#,%,@|})"
     ],
-    "description": "Inserts a block comment section header"
-  },
-  "Block Comment": {
-    "prefix": "comment",
-    "body": [";- $1 -;"],
-    "description": "Inserts a single-line block comment"
+    "description": "Terminal read input",
+    "scope": "support.function.terminal.night"
   }
 }

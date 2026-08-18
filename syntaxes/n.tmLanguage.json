@@ -6,6 +6,7 @@
     { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#keywords" },
+    { "include": "#typed-functions" },
     { "include": "#type-declarations" },
     { "include": "#operators" },
     { "include": "#numbers" },
@@ -38,10 +39,15 @@
           "begin": "\"",
           "end": "\"",
           "patterns": [
-            {
-              "name": "constant.character.escape.night",
-              "match": "\\\\."
-            }
+            { "name": "constant.character.escape.night", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.quoted.single.night",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "name": "constant.character.escape.night", "match": "\\\\." }
           ]
         }
       ]
@@ -50,39 +56,52 @@
       "patterns": [
         {
           "name": "keyword.control.night",
-          "match": "\\b(if|elif|else|during|repeat|count|arg|incase|attempt|block|send|break|continue|main)\\b"
+          "match": "\\b(if|elif|else|during|repeat|count|arg|incase|attempt|send|end|break|continue|main)\\b"
         },
         {
           "name": "keyword.other.using.night",
-          "match": "\\b(using|terminal)\\b"
+          "match": "\\b(using)\\b"
         },
         {
-          "name": "support.type.module.night",
-          "match": "\\b(boolean)\\b"
+          "name": "entity.name.namespace.night",
+          "match": "(?<=using\\s+)\\b(boolean|terminal|file)\\b"
+        },
+        {
+          "name": "entity.name.namespace.night",
+          "match": "\\b(terminal|boolean)(?=\\.)"
+        },
+        {
+          "name": "entity.name.namespace.night",
+          "match": "\\b(true|false|nil)\\b"
+        },
+        {
+          "name": "entity.name.namespace.night",
+          "match": "\\b(terminal)(?=\\.)"
         },
         {
           "name": "support.function.terminal.night",
           "match": "(?<=terminal\\.)(out|in)\\b"
         },
         {
-          "name": "constant.language.boolean.night",
-          "match": "(?<=using\\s+boolean[\\s\\S]*?)\\b(true|false|nil)\\b"
+          "name": "constant.language.night",
+          "match": "\\b(true|false|nil)\\b"
+        }
+      ]
+    },
+    "typed-functions": {
+      "patterns": [
+        {
+          "captures": {
+            "1": { "name": "storage.type.symbol.night" },
+            "2": { "name": "storage.type.keyword.night" },
+            "3": { "name": "entity.name.function.night" }
+          },
+          "match": "([#%@$?])\\s*(func)\\s+([a-zA-Z_][a-zA-Z0-9_]*)"
         }
       ]
     },
     "type-declarations": {
       "patterns": [
-        {
-          "name": "storage.type.symbol.night",
-          "match": "[#%@$?]"
-        },
-        {
-          "captures": {
-            "1": { "name": "storage.type.symbol.night" },
-            "2": { "name": "entity.name.function.typed.night" }
-          },
-          "match": "([#%@$])\\s*([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\()"
-        },
         {
           "captures": {
             "1": { "name": "storage.type.symbol.night" },
@@ -96,14 +115,18 @@
             "2": { "name": "entity.name.type.constant.night" }
           },
           "match": "(\\?)\\s*([a-zA-Z_][a-zA-Z0-9_]*)"
+        },
+        {
+          "name": "storage.type.symbol.night",
+          "match": "[#%@$?]"
         }
       ]
     },
     "operators": {
       "patterns": [
         {
-          "name": "keyword.operator.pointer.night",
-          "match": "->\\+|\\+<-"
+          "name": "storage.type.symbol.pointer.night",
+          "match": "->>>|->>|->|<<<-|<<-|<-"
         },
         {
           "name": "keyword.operator.logical.night",
@@ -114,19 +137,19 @@
     "numbers": {
       "patterns": [
         {
-          "name": "constant.language.boolean.numeric.night",
+          "name": "keyword.other.boolean.night",
           "match": "\\b[01]\\b"
         },
         {
           "name": "constant.numeric.night",
-          "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+          "match": "\\b[2-9]|[1-9][0-9]+(\\.[0-9]+)?\\b"
         }
       ]
     },
     "functions": {
       "patterns": [
         {
-          "name": "entity.name.function.night",
+          "name": "storage.type.keyword.night",
           "match": "\\b(func)\\b"
         },
         {
