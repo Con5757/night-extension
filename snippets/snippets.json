@@ -11,7 +11,7 @@
   "Typed Function": {
     "prefix": "func",
     "body": [
-      "${1|#,%,@,$|}func ${2:name}(${3:params}) {",
+      "${1|#,%,@,$|}func ${2:name}(${3:}) {",
       "\t$0",
       "}"
     ],
@@ -20,8 +20,8 @@
   "Count Switch Block": {
     "prefix": "count",
     "body": [
-      "count (${1:variable}) {",
-      "\targ ${2:value}:",
+      "count (${1:}) {",
+      "\targ ${2:}:",
       "\t\t$3",
       "\t\tend",
       "\tincase:",
@@ -34,7 +34,7 @@
   "Arg Case": {
     "prefix": "arg",
     "body": [
-      "arg ${1:value}:",
+      "arg ${1:}:",
       "\t$0",
       "\tend"
     ],
@@ -43,7 +43,7 @@
   "If Statement": {
     "prefix": "if",
     "body": [
-      "if ${1:value} ${2:compare} ${3:expression} {",
+      "if ${1:} {",
       "\t$0",
       "}"
     ],
@@ -52,7 +52,7 @@
   "Elif Statement": {
     "prefix": "elif",
     "body": [
-      "elif ${1:value} ${2:compare} ${3:expression} {",
+      "elif ${1:} {",
       "\t$0",
       "}"
     ],
