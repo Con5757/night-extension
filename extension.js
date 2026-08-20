@@ -50,7 +50,7 @@ function highlightNightCode(code) {
     {
       type: "keyword",
       regex:
-        /^\b(if|elif|else|during|repeat|count|arg|incase|attempt|send|end|kill|break|continue|main|using)\b/,
+        /^\b(if|elif|else|during|repeat|switch|arg|incase|attempt|send|end|kill|break|continue|main|using)\b/,
       style: "color: #C586C0; font-weight: bold;",
     },
     // 5. vars and decl

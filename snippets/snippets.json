@@ -18,10 +18,10 @@
     ],
     "description": "Typed function with curly braces"
   },
-  "Count Switch Block": {
-    "prefix": "count",
+  "Switch Block": {
+    "prefix": "switch",
     "body": [
-      "count (${1:}) {",
+      "switch (${1:}) {",
       "\targ ${2:}:",
       "\t\t$3",
       "\t\tend",
@@ -30,7 +30,7 @@
       "\t\tend",
       "}"
     ],
-    "description": "Count block using curly braces and end markers"
+    "description": "switch block using curly braces and end markers"
   },
   "Arg Case": {
     "prefix": "arg",
@@ -113,6 +113,22 @@
       ".nl"
     ],
     "description": "Terminal New Line",
+    "scope": "support.function.terminal.night"
+  },
+  "Terminal Upper": {
+    "prefix": ".upper",
+    "body": [
+      ".upper"
+    ],
+    "description": "Terminal force upper",
+    "scope": "support.function.terminal.night"
+  },
+    "Terminal lower": {
+    "prefix": ".lower",
+    "body": [
+      ".lower"
+    ],
+    "description": "Terminal force lower",
     "scope": "support.function.terminal.night"
   }
 }
